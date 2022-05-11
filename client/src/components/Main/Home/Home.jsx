@@ -22,7 +22,6 @@ const Home = () => {
     []
   );
 
-// TODO: poner CSS
   return (
     <figure className="apod__figure">
       <img src={apod.url} alt={apod.title}/>

@@ -7,18 +7,18 @@ import NeasList from './Neas/NeasListView';
 import NeasAdd from './Neas/NeasAddView';
 
 const Main = () => {
- 
-    return (
-      <main>
-        <Routes>
-          <Route element={<Home />} path='/' />
+
+  return (
+    <main>
+      <Routes>
+        <Route element={<Home />} path='/' />
           <Route element={<LandingsMap />} path='/landings' />
           <Route element={<LandingsList />} path='/landings/list' />
           <Route element={<NeasList />} path='/neas' />
           <Route element={<NeasAdd />} path='/neas/list' />
-        </Routes>
-      </main>
-    );
+      </Routes>
+    </main>
+  );
 }
 
 export default Main;

@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 
 const MapLandings = () => {
+
+  useEffect(
+    () => { getLandings() },
+    []
+  );
+
+  const getLandings = () => {
+    const res = axios.get('/api/astronomy/landings');
+    const landingsData = res.data;
+    console.log(landingsData);
+  }
 
 
   return (
