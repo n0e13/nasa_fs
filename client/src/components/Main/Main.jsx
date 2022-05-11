@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import LandingsMap from './Landings/LandingsMapView';
@@ -6,8 +6,8 @@ import LandingsList from './Landings/LandingsListView';
 import NeasList from './Neas/NeasListView';
 import NeasAdd from './Neas/NeasAddView';
 
-class Main extends Component {
-  render() {
+const Main = () => {
+ 
     return (
       <main>
         <Routes>
@@ -19,7 +19,6 @@ class Main extends Component {
         </Routes>
       </main>
     );
-  }
 }
 
 export default Main;
