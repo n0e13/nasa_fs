@@ -8,6 +8,24 @@ const Nea = require('./nea_schema_model');
 const myRgx = require('../utils/validateDate');
 
 
+/** Obtiene todas las Neas y su información ​
+ * Ejemplo: /astronomy/neas?class=aten​
+ * @memberof NeaAPI
+ * @method getAll
+ * @async
+ * @returns {JSON}
+ * @throws {error}
+ */
+ const getAll = async () => {
+    try {
+        const allNeas = await Nea.find();
+        return allNeas;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 /** Obtiene la designación y el período anual en base a la clase orbital del asteroide (con query params)​
  * Ejemplo: /astronomy/neas?class=aten​
  * @memberof NeaAPI
@@ -187,6 +205,7 @@ const deleteNea = async (nea) => {
 }
 
 const neaAPI = {
+    getAll,
     getByClass,
     getByDate,
     createNea,

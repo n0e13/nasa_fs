@@ -29,7 +29,13 @@ const getByQuery = async (req, res) => {
             res.status(400).json({ message: 'Parámetros de consulta incorrectos' });
         }
     } else {
-        res.status(400).json({ message: 'No hay parámetros' });
+        try {
+            const allLandings = await landingDB.getAll();
+            res.status(200).json(allLandings);
+        }
+        catch (error) {
+            res.status(400).json({ message: error });
+        }
     }
 }
 
