@@ -22,10 +22,9 @@ const Home = () => {
     []
   );
 
-// TODO: poner CSS
   return (
-    <figure>
-      <img src={apod.url} alt={apod.title} />
+    <figure className="apod__figure">
+      <img src={apod.url} alt={apod.title}/>
       <figcaption>{apod.explanation}</figcaption>
     </figure>
   );

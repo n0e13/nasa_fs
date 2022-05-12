@@ -94,7 +94,7 @@ const Nav = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -106,7 +106,7 @@ const Nav = () => {
               textDecoration: 'none',
             }}
           >
-            NASA FullStack MERN
+            NASA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, i) => (
