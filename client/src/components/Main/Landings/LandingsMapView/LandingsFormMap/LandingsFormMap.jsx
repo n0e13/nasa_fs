@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -19,41 +20,46 @@ const nameFilters = ['', 'Minimum mass', 'Mass', 'Class', 'From year', 'To year'
 
 const LandingsFormMap = (props) => {
 
-  const [filter, setFilter] = useState(0);
+  const { saveTypeFilter, saveQuantityFilter, saveFromYear, saveToYear, saveTypeClass, allClasses } = props.data;
+  const [filter, setFilter] = useState('');
   const [nameFilter, setNameFilter] = useState('');
 
   const handleChange = (event) => {
-    setFilter(event.target.value);
-    setNameFilter(nameFilters[event.target.value]);
-    props.data.saveTypeFilter(event.target.value);
+    if (event.target.name === 'select-class') {
+      saveTypeClass(event.target.value)
+    } else {
+      setFilter(event.target.value);
+      setNameFilter(nameFilters[event.target.value]);
+      saveTypeFilter(event.target.value);
+    }
   };
 
   const handleChangeQuantity = (event) => {
     if (filter === LANDING_MIN_MASS
-      || filter === LANDING_MASS
-      || filter === LANDING_CLASS) {
-      props.data.saveQuantityFilter(event.target.value);
+      || filter === LANDING_MASS) {
+      saveQuantityFilter(event.target.value);
     } else if (filter === LANDING_BETWEEN_YEARS) {
       if (event.target.id === 'from-year') {
-        props.data.saveFromYear(event.target.value);
+        saveFromYear(event.target.value);
       } else {
-        props.data.saveToYear(event.target.value);
+        saveToYear(event.target.value);
       }
     } else if (filter === LANDING_FROM_YEAR) {
-      props.data.saveFromYear(event.target.value);
+      saveFromYear(event.target.value);
     } else if (filter === LANDING_TO_YEAR) {
-      props.data.saveToYear(event.target.value);
+      saveToYear(event.target.value);
     }
   };
 
   return (
     <>
       <FormControl sx={{ m: 1, width: '95%' }} size="small">
-        <InputLabel id="demo-select-small">Filter</InputLabel>
+        <InputLabel id="input-select-small">Filter</InputLabel>
         <Select
           labelId="demo-select-small"
-          id="demo-select-small"
+          name="select-filter"
           label="Filter"
+          defaultValue=''
           onChange={handleChange}
         >
           <MenuItem value={0}>
@@ -112,20 +118,39 @@ const LandingsFormMap = (props) => {
           </Box>
           : filter === LANDING_CLASS
             ?
-            <Box sx={{ width: '95%' }}>
-              <>
-                <TextField
-                  size='small'
-                  label={nameFilter}
-                  onChange={handleChangeQuantity}
-                  id="quantity"
-                  sx={{ m: 1, width: 350, maxWidth: '100%' }}
-                  InputProps={{
-                    startAdornment: <InputAdornment position="start">class</InputAdornment>,
-                  }}
-                />
-              </>
-            </Box>
+            <FormControl sx={{ m: 1, width: '95%' }} size="small">
+              <InputLabel id="input-select-class">Classes</InputLabel>
+              <Select
+                labelId="demo-select-class"
+                name="select-class"
+                label="Class"
+                defaultValue=''
+                onChange={handleChange}
+              >
+                <MenuItem value={0}>
+                  <em>None</em>
+                </MenuItem>
+                {allClasses.map(landingClass => {
+                  return (
+                    <MenuItem id='landing-class' key={uuidv4()} value={landingClass}>{landingClass}</MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+            /*             <Box sx={{ width: '95%' }}>
+                          <>
+                            <TextField
+                              size='small'
+                              label={nameFilter}
+                              onChange={handleChangeQuantity}
+                              id="quantity"
+                              sx={{ m: 1, width: 350, maxWidth: '100%' }}
+                              InputProps={{
+                                startAdornment: <InputAdornment position="start">class</InputAdornment>,
+                              }}
+                            />
+                          </>
+                        </Box> */
             : filter === LANDING_FROM_YEAR || filter === LANDING_TO_YEAR
               ?
               <Box sx={{ width: '95%' }}>

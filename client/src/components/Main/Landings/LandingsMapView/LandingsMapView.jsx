@@ -8,6 +8,8 @@ const LandingsMapView = () => {
   const [quantityFilter, setQuantityFilter] = useState('');
   const [fromYear, setFromYear] = useState('');
   const [toYear, setToYear] = useState('');
+  const [allClasses, setAllClasses] = useState([]);
+  const [typeClass, setTypeClass] = useState('');
 
   const saveTypeFilter = (filter) => {
     setTypeFilter(filter);
@@ -21,19 +23,30 @@ const LandingsMapView = () => {
   const saveToYear = (to) => {
     setToYear(to);
   }
+  const saveAllClasses = (landingClasses) => {
+    setAllClasses(landingClasses);
+  }
+  const saveTypeClass = (landingClass) => {
+    setTypeClass(landingClass);
+  }
 
   const setFilters = {
     saveTypeFilter,
     saveQuantityFilter,
     saveFromYear,
-    saveToYear
+    saveToYear,
+    saveTypeClass,
+    allClasses
   }
 
   const dataFilters = {
     typeFilter,
     quantityFilter,
     fromYear,
-    toYear
+    toYear,
+    allClasses,
+    typeClass,
+    saveAllClasses
   }
 
   return (
