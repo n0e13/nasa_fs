@@ -53,13 +53,12 @@ const MapLandings = (props) => {
     }, [typeFilter, quantityFilter, fromYear, toYear, typeClass]
   )
 
-
   useEffect(
     () => {
       (async () => {
         try {
           setIsSearching(true);
-          const response = await axios.get(`${API_LANDING_URI}${newURI}`);
+          const response = await axios.get(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${newURI}`);
           const data = await response.data;
           setLandings([...data]);
           setIsSearching(false);
@@ -88,7 +87,8 @@ const MapLandings = (props) => {
               <Popup>
                 <>
                   <p>Name: {landing.name}</p>
-                  <p>Class: {landing.recclass}</p>
+                  {landing.year ? <p>Year: {landing.year}</p> : ''}
+                  {landing.recclass ? <p>Class: {landing.recclass}</p> : ''}
                   {landing.mass ? <p>Mass: {landing.mass}g</p> : ''}
                 </>
               </Popup>
@@ -109,8 +109,8 @@ const MapLandings = (props) => {
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {isSearching ? '' : paintMarkers()}
+        /> 
+        {isSearching ? <p>Loading...</p> : paintMarkers()}
       </MapContainer>
     </div>
   );

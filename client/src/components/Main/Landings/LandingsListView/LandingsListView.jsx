@@ -1,11 +1,14 @@
 import React from "react";
 import MenuLandings from '../LandingsMenuViews';
+import LandingFormAdd from './LandingFormAdd';
+import LandingsList from './LandingsList';
 
 const LandingsListView = () => {
   return (
     <div>
       <MenuLandings />
-      Aquí el listado de landings
+      <LandingFormAdd />
+      <LandingsList />
     </div>
   );
 };
