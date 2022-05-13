@@ -20,10 +20,10 @@ const NeasMenuViews = () => {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <Item><Link href='/neas'>Lista</Link></Item>
+            <Item><Link href='/neas'>List</Link></Item>
           </Grid>
           <Grid item xs={6}>
-            <Item><Link href='/neas/list'>Nueva</Link></Item>
+            <Item><Link href='/neas/list'>New</Link></Item>
           </Grid>
         </Grid>
       </Box>

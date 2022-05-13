@@ -1,4 +1,5 @@
-export const API_LANDING_URI='http://localhost:3000/api/astronomy/landings';
+export const API_LANDING_URI='/api/astronomy/landings';
+export const API_NEA_URI='/api/astronomy/neas';
 
 export const LANDING_MIN_MASS=1;
 export const LANDING_MASS=2;

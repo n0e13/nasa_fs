@@ -6,7 +6,6 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
@@ -20,10 +19,10 @@ const LandingsMenuViews = () => {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <Item><Link href='/landings'>Mapa</Link></Item>
+            <Item><Link href='/landings'>Map</Link></Item>
           </Grid>
           <Grid item xs={6}>
-            <Item><Link href='/landings/list'>Lista</Link></Item>
+            <Item><Link href='/landings/list'>List</Link></Item>
           </Grid>
         </Grid>
       </Box>
