@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import LandingCard from './LandingCard';
 import { API_LANDING_URI } from '../../../../../constants/constants';
 
+
 const LandingsList = () => {
+  
   const [isSearching, setIsSearching] = useState(false);
   const [landings, setLandings] = useState([]);
 
+
+  const deleteLanding = (i) => {
+    const remainingLandings = landings.filter((landing, j) => {
+      return i !== j
+    })
+    setLandings(remainingLandings);
+    paintCards();
+  }
+
+
   const paintCards = () => {
     return landings.map(
-      landing => {
-        return <LandingCard key={uuidv4()} landing={landing} />
+      (landing, i) => {
+        return <LandingCard key={i} landing={landing} delete={() => deleteLanding(i)} />
       }
     );
   }
