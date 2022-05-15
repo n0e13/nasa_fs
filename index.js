@@ -16,7 +16,7 @@ const swaggerDocument = require('./configs/swagger.json');
 // Middlewares
 const notFound = require('./middlewares/notFound');
 
-const landingRouter = require('./routes/lading_routes');
+const landingRouter = require('./routes/landing_routes');
 const neaRouter = require('./routes/nea_routes');
 
 const port = PORT || 5000;
