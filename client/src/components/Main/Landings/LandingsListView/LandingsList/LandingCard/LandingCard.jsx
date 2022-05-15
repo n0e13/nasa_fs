@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Popover from "@mui/material/Popover";
 import TextField from "@mui/material/TextField";
 import SaveIcon from "@mui/icons-material/Save";
+import CloseIcon from '@mui/icons-material/Close';
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 
 import {
@@ -181,6 +182,9 @@ const LandingCard = (props) => {
                 <TextField label="Longitude" id={LANDING_VALUE_LONG} size="small" margin="dense" placeholder={reclong} onChange={handleValue} />
                 <IconButton color="primary" aria-label="save" size="large" onClick={handleEdit}>
                   <SaveIcon fontSize="large" />
+                </IconButton>
+                <IconButton color="primary" aria-label="close" size="large" onClick={()=> {setOpen(false)}}>
+                  <CloseIcon fontSize="large" />
                 </IconButton>
               </Box>
             </CardContent>

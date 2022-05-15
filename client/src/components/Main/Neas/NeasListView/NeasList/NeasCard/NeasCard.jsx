@@ -90,7 +90,3 @@ const NeasCard = (props) => {
 };
 
 export default NeasCard;
-
-
-
-

@@ -1,7 +1,12 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const NeasFormAdd = () => {
-  return <div>NeasFormAdd</div>;
+  return (
+  <>
+    form
+  </>
+  );
 };
 
 export default NeasFormAdd;
