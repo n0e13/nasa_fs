@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import {
   API_LANDING_URI,
-  API_LANDING_CREATE,
+  API_CREATE,
   LANDING_VALUE_ID,
   LANDING_VALUE_NAME,
   LANDING_VALUE_NAMETYPE,
@@ -85,7 +85,7 @@ const LandingFormAdd = () => {
         };
 
         console.log(newLanding);
-        const res = await axios.post(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${API_LANDING_CREATE}`, newLanding);
+        const res = await axios.post(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${API_CREATE}`, newLanding);
         const data = await res.data;
         handleExpandClick();
         console.log(data);

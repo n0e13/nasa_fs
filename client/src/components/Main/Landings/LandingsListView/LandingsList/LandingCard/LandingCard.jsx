@@ -15,8 +15,8 @@ import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 
 import {
   API_LANDING_URI,
-  API_LANDING_EDIT,
-  API_LANDING_DELETE,
+  API_EDIT,
+  API_DELETE,
   LANDING_VALUE_ID,
   LANDING_VALUE_NAME,
   LANDING_VALUE_NAMETYPE,
@@ -62,7 +62,7 @@ const LandingCard = (props) => {
         }
       };
 
-      const res = await axios.put(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${API_LANDING_EDIT}`, editLanding);
+      const res = await axios.put(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${API_EDIT}`, editLanding);
       const data = await res.data;
       console.log(data);
     } catch (error) {
@@ -110,7 +110,7 @@ const LandingCard = (props) => {
     try {
       props.delete();
       const deleteID = { id: id };
-      const res = await axios.delete(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${API_LANDING_DELETE}`, { data: deleteID });
+      const res = await axios.delete(`${process.env.REACT_APP_HOST}${API_LANDING_URI}${API_DELETE}`, { data: deleteID });
       const data = await res.data;
       console.log(data);
     } catch (error) {
@@ -171,15 +171,15 @@ const LandingCard = (props) => {
             <CardContent>
               <Typography paragraph>Edit the landing:</Typography>
               <Box sx={{ flexGrow: 1 }}>
-                <TextField label="ID" id={LANDING_VALUE_ID} size="small" margin="dense" placeholder={id} onChange={handleValue} />
-                <TextField label="Name" id={LANDING_VALUE_NAME} size="small" margin="dense" placeholder={name} onChange={handleValue} />
-                <TextField label="Nametype" id={LANDING_VALUE_NAMETYPE} size="small" margin="dense" placeholder={nametype} onChange={handleValue} />
-                <TextField label="Class" id={LANDING_VALUE_CLASS} size="small" margin="dense" placeholder={recclass} onChange={handleValue} />
-                <TextField label="Mass" id={LANDING_VALUE_MASS} size="small" margin="dense" placeholder={mass} onChange={handleValue} />
-                <TextField label="Fall" id={LANDING_VALUE_FALL} size="small" margin="dense" placeholder={fall} onChange={handleValue} />
-                <TextField label="Year" id={LANDING_VALUE_YEAR} size="small" margin="dense" placeholder={year} onChange={handleValue} />
-                <TextField label="Latitude" id={LANDING_VALUE_LAT} size="small" margin="dense" placeholder={reclat} onChange={handleValue} />
-                <TextField label="Longitude" id={LANDING_VALUE_LONG} size="small" margin="dense" placeholder={reclong} onChange={handleValue} />
+                <TextField label="ID" id={LANDING_VALUE_ID} size="small" margin="dense" defaultValue={id} onChange={handleValue} />
+                <TextField label="Name" id={LANDING_VALUE_NAME} size="small" margin="dense" defaultValue={name} onChange={handleValue} />
+                <TextField label="Nametype" id={LANDING_VALUE_NAMETYPE} size="small" margin="dense" defaultValue={nametype} onChange={handleValue} />
+                <TextField label="Class" id={LANDING_VALUE_CLASS} size="small" margin="dense" defaultValue={recclass} onChange={handleValue} />
+                <TextField label="Mass" id={LANDING_VALUE_MASS} size="small" margin="dense" defaultValue={mass} onChange={handleValue} />
+                <TextField label="Fall" id={LANDING_VALUE_FALL} size="small" margin="dense" defaultValue={fall} onChange={handleValue} />
+                <TextField label="Year" id={LANDING_VALUE_YEAR} size="small" margin="dense" defaultValue={year} onChange={handleValue} />
+                <TextField label="Latitude" id={LANDING_VALUE_LAT} size="small" margin="dense" defaultValue={reclat} onChange={handleValue} />
+                <TextField label="Longitude" id={LANDING_VALUE_LONG} size="small" margin="dense" defaultValue={reclong} onChange={handleValue} />
                 <IconButton color="primary" aria-label="save" size="large" onClick={handleEdit}>
                   <SaveIcon fontSize="large" />
                 </IconButton>
