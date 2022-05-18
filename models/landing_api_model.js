@@ -8,6 +8,23 @@
 const Landing = require('./landing_schema_model');
 const myRgx = require('../utils/validateDate');
 
+/** Obtiene todas las Neas y su información ​
+ * Ejemplo: /astronomy/neas?class=aten​
+ * @memberof LandingAPI
+ * @method getAll
+ * @async
+ * @returns {JSON}
+ * @throws {error}
+ */
+const getAll = async () => {
+    try {
+        const allLandings = await Landing.find();
+        return allLandings;
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 /** Obtiene nombre y masa de todos aquellos meteoritos cuya masa sea igual o superior a una masa (gr) dada (con query parameters)​
  * Ejemplo: /astronomy/landings?minimum_mass=200000​
@@ -24,7 +41,8 @@ const getByMassAprox = async (min_mass) => {
             '$project': {
                 '_id': 0,
                 'name': 1,
-                'mass': 1
+                'mass': 1,
+                'geolocation': 1
             }
         }, {
             '$match': { '$expr': { '$gte': [{ '$toDecimal': '$mass' }, min_mass] } }
@@ -54,7 +72,8 @@ const getByMass = async (exactMass) => {
             '$project': {
                 '_id': 0,
                 'name': 1,
-                'mass': 1
+                'mass': 1,
+                'geolocation': 1
             }
         }, {
             '$match': { '$expr': { '$eq': [{ '$toDecimal': '$mass' }, exactMass] } }
@@ -83,7 +102,8 @@ const getByClass = async (exactClass) => {
             '$project': {
                 '_id': 0,
                 'name': 1,
-                'recclass': 1
+                'recclass': 1,
+                'geolocation': 1
             }
         }, {
             '$match': { '$expr': { '$eq': ['$recclass', exactClass] } }
@@ -128,7 +148,8 @@ const getByDate = async (fromYear, toYear) => {
                     '_id': 0,
                     'name': 1,
                     'mass': 1,
-                    'year': 1
+                    'year': 1,
+                    'geolocation': 1
                 }
             }
         ];
@@ -230,6 +251,7 @@ const deleteLanding = async (landing) => {
 }
 
 const landingAPI = {
+    getAll,
     getByMassAprox,
     getByMass,
     getByClass,

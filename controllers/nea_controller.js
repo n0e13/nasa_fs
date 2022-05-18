@@ -26,7 +26,13 @@ const getByQuery = async (req, res) => {
             getByDate(req.query, res);
         }
     } else {
-        res.status(400).json({ message: 'No hay parámetros' });
+        try {
+            const allNeas = await neaDB.getAll();
+            res.status(200).json(allNeas);
+        }
+        catch (error) {
+            res.status(400).json({ message: error });
+        }
     }
 }
 

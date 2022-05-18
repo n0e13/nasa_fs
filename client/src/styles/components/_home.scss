@@ -1,0 +1,13 @@
+.apod__figure {
+    margin: auto;
+
+    &>img {
+        width: 100%;
+        height: auto;
+    }
+
+    &>figcaption {
+        width: 100%;
+        height: auto;
+    }
+}
