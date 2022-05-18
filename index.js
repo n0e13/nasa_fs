@@ -29,7 +29,18 @@ const app = express();
 
 // Middlewares
 app.use(helmet());
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://nasa-fs-n0e.herokuapp.com/", "https://api.nasa.gov/planetary/apod"],
+        //methods:['GET','PUT', 'POST', 'DELETE'],
+        allowedHeaders:['Content-Type'],
+        //exposedHeaders: [],
+        //credentials:true,
+        //maxAge:18,
+        //preflightContinue:true,
+        //optionsSuccessStatus:
+    }
+    ));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
