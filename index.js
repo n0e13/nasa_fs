@@ -31,14 +31,8 @@ const app = express();
 app.use(helmet());
 app.use(cors(
     {
-        origin: ["https://api.nasa.gov/planetary/apod"],
-        //methods:['GET','PUT', 'POST', 'DELETE'],
+        origin: ["https://api.nasa.gov/planetary/apod?api_key="],
         allowedHeaders:['Content-Type'],
-        //exposedHeaders: [],
-        //credentials:true,
-        //maxAge:18,
-        //preflightContinue:true,
-        //optionsSuccessStatus:
     }
     ));
 
