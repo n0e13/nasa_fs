@@ -76,7 +76,8 @@ const MapLandings = (props) => {
   const paintMarkers = () => {
     return landings.map(
       landing => {
-        if (landing.geolocation) {
+        console.log(landing);
+        if (landing.geolocation){
           const lat = landing.geolocation.latitude;
           const lon = landing.geolocation.longitude;
           return (
