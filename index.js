@@ -10,6 +10,7 @@ const {connectMySQL} = require("./configs/mysql_config");
 
 const helmet = require('helmet');
 const cors = require('cors');
+const path = require('path');//Añadido para conectar front y back
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./configs/swagger.json');
@@ -33,6 +34,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Front + back
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 // Routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/astronomy/landings', landingRouter);
@@ -41,6 +45,12 @@ app.use('/api/auth', authRouter);
 
 // Middlewares
 app.use(notFound);
+
+
+// Front + back
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + 'client/build/index.html'))
+})
 
 /**
  * Función inicial que conecta a la BBDD y lanza el servidor
