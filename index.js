@@ -6,6 +6,8 @@ const express = require('express');
 
 const { app: { PORT } } = require('./configs/env_config');
 const connectMongoDB = require('./configs/mongodb_config');
+const {connectMySQL} = require("./configs/mysql_config");
+
 const helmet = require('helmet');
 const cors = require('cors');
 const swaggerJsDoc = require('swagger-jsdoc');
@@ -18,6 +20,7 @@ const notFound = require('./middlewares/notFound');
 
 const landingRouter = require('./routes/landing_routes');
 const neaRouter = require('./routes/nea_routes');
+const authRouter = require('./routes/auth_routes');
 
 const port = PORT || 5000;
 
@@ -34,6 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/astronomy/landings', landingRouter);
 app.use('/api/astronomy/neas', neaRouter); 
+app.use('/api/auth', authRouter);
 
 // Middlewares
 app.use(notFound);
@@ -46,6 +50,7 @@ app.use(notFound);
 const init = async () => {
     try {
         await connectMongoDB();
+        await connectMySQL();
         app.listen(port, () => {
             console.log(`Example app listening at http://localhost:${port}`)
         })
